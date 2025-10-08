@@ -51,7 +51,7 @@ function App() {
       <Section 
         id="quienes-somos" 
         title="¿Qué es Ciber Guardians?" 
-        subtitle="Tu puerta de entrada al fascinante mundo de la protección digital. Formación gratuita para los defensores del ciberespacio del mañana."
+        subtitle="Tu puerta de entrada al fascinante mundo de la protección digital. Formación personal de calidad y 100% gratuita para los defensores del ciberespacio del mañana."
         className="about-section"
         headerClassName="section-header-left"
       >
@@ -73,24 +73,33 @@ function App() {
       <Section 
         id="mision-vision-valores" 
         title="Nuestra Misión, Visión y Valores" 
-        subtitle="Formación integral en ciberseguridad, impartida por expertos"
+        subtitle="Inspiramos a futuros líderes en ciberseguridad mediante una formación basada en excelencia, innovación y compromiso social."
         className="mission-section"
       >
         <div className="mission-grid">
-          <div className="mission-card" data-aos="fade-up"> 
-            <div className="card-icon">🎯</div>
-            <h3>NUESTRA MISIÓN</h3>
-            <p>Empoderar a los estudiantes con habilidades de ciberseguridad de clase mundial, a través de una formación de calidad y certificaciones internacionales.</p>
+          <div className="mission-card-wrapper" data-aos="fade-up">
+            <div className="mission-card"> 
+              <div className="card-icon">🎯</div>
+              <h3>NUESTRA MISIÓN</h3>
+              <p>Impulsar a los estudiantes hacia la excelencia en ciberseguridad, ofreciendo una formación gratuita y de alta calidad que fortalezca sus conocimientos y habilidades para enfrentar los desafíos del entorno digital.
+              </p>
+            </div>
           </div>
-          <div className="mission-card" data-aos="fade-up" data-aos-delay="100"> 
-            <div className="card-icon">🔭</div>
-            <h3>NUESTRA VISIÓN</h3>
-            <p>Ser reconocidos como el principal centro de formación en ciberseguridad en México y Latinoamérica, formando a los líderes en ciberseguridad del mañana.</p>
+          <div className="mission-card-wrapper" data-aos="fade-up" data-aos-delay="100">
+            <div className="mission-card"> 
+              <div className="card-icon">🔭</div>
+              <h3>NUESTRA VISIÓN</h3>
+              <p>Consolidarnos como el centro líder en formación en ciberseguridad de Colombia y Latinoamérica, promoviendo el desarrollo de profesionales capaces de liderar la protección y transformación digital del futuro.
+              </p>
+            </div>
           </div>
-          <div className="mission-card" data-aos="fade-up" data-aos-delay="200"> 
-            <div className="card-icon">💎</div>
-            <h3>NUESTROS VALORES</h3>
-            <p>Compromiso con la excelencia, pasión por la innovación, y dedicación a nuestros estudiantes y a la comunidad de ciberseguridad.</p>
+          <div className="mission-card-wrapper" data-aos="fade-up" data-aos-delay="200">
+            <div className="mission-card"> 
+              <div className="card-icon">💎</div>
+              <h3>NUESTROS VALORES</h3>
+              <p>Fomentamos la excelencia y la innovación con pasión, manteniendo un firme compromiso con el aprendizaje de nuestros estudiantes y el fortalecimiento de la comunidad de ciberseguridad.
+              </p>
+            </div>
           </div>
         </div>
       </Section>
@@ -99,7 +108,8 @@ function App() {
       <Section 
         id="modulos" 
         title="Nuestros módulos formativos" 
-        subtitle="Aprende ciberseguridad con nuestro plan de estudios completo y práctico"
+        subtitle="Domina la ciberseguridad con nuestro plan de estudios integral, enfocado en la práctica y el aprendizaje aplicado.
+"
         className="modules-section"
       >
         <div className="modules-grid">
