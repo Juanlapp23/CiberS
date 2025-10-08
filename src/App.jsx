@@ -1,4 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import AOS from 'aos';
+import 'aos/dist/aos.css'; // Importa los estilos de AOS
 import './App.css';
 import Header from './components/Header';
 import Hero from './components/Hero';
@@ -10,6 +12,14 @@ import { testimonialsData } from './data/testimonials';
 import { faqData } from './data/faq';
 
 function App() {
+  // Inicializa AOS una vez que el componente se monta
+  useEffect(() => {
+    AOS.init({
+      duration: 800, // Duración de la animación
+      once: true,    // La animación ocurre solo una vez
+    });
+  }, []);
+
   const [formData, setFormData] = useState({
     nombre: '',
     email: '',
@@ -67,17 +77,17 @@ function App() {
         className="mission-section"
       >
         <div className="mission-grid">
-          <div className="mission-card" data-aos="fade-up">
+          <div className="mission-card" data-aos="fade-up"> 
             <div className="card-icon">🎯</div>
             <h3>NUESTRA MISIÓN</h3>
             <p>Empoderar a los estudiantes con habilidades de ciberseguridad de clase mundial, a través de una formación de calidad y certificaciones internacionales.</p>
           </div>
-          <div className="mission-card" data-aos="fade-up" data-aos-delay="100">
-            <div className="card-icon">👁️</div>
+          <div className="mission-card" data-aos="fade-up" data-aos-delay="100"> 
+            <div className="card-icon">🔭</div>
             <h3>NUESTRA VISIÓN</h3>
             <p>Ser reconocidos como el principal centro de formación en ciberseguridad en México y Latinoamérica, formando a los líderes en ciberseguridad del mañana.</p>
           </div>
-          <div className="mission-card" data-aos="fade-up" data-aos-delay="200">
+          <div className="mission-card" data-aos="fade-up" data-aos-delay="200"> 
             <div className="card-icon">💎</div>
             <h3>NUESTROS VALORES</h3>
             <p>Compromiso con la excelencia, pasión por la innovación, y dedicación a nuestros estudiantes y a la comunidad de ciberseguridad.</p>
@@ -94,6 +104,7 @@ function App() {
       >
         <div className="modules-grid">
           {modulesData.map((module, index) => (
+            // ModuleCard internamente ya debe tener su data-aos
             <ModuleCard
               key={module.id}
               title={module.title}
