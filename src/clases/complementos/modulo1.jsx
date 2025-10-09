@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import Header from '../components/Header';
-import './ModuleClass.css';
+import Header from '../../components/Header';
+import './estilos/modulo1.css';
 
 function Module1Class1() {
   const [activeTab, setActiveTab] = useState('contenido');
