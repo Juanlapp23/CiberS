@@ -1,6 +1,7 @@
 // src/components/Hero.jsx
 import TextType from './TextType';
 import CountUp from './CountUp';
+import Magnet from './Magnet';
 
 const Hero = () => {
   const scrollToSection = (sectionId) => {
@@ -30,7 +31,6 @@ const Hero = () => {
               deletingSpeed={50}
               showCursor={true}
               cursorCharacter="_"
-
               cursorBlinkDuration={0.5}
               variableSpeed={{ min: 60, max: 120 }}
               className="text-white font-bold"
@@ -48,12 +48,20 @@ const Hero = () => {
             >
               Ver módulos disponibles
             </button>
-            <button 
-              className="cta-button secondary"
-              onClick={() => scrollToSection('contacto')}
+            
+            <Magnet 
+              padding={30} 
+              magnetStrength={3}
+              wrapperClassName="magnet-wrapper"
+              innerClassName="magnet-inner"
             >
-              Contactar 
-            </button>
+              <button 
+                className="cta-button secondary"
+                onClick={() => scrollToSection('contacto')}
+              >
+                Contactar 
+              </button>
+            </Magnet>
           </div>
           <div className="hero-stats">
             <div className="stat">
@@ -101,7 +109,12 @@ const Hero = () => {
         
         <div className="hero-visual">
           <div className="hero-image">
-            <img src="/Portada.png" alt="Visual Hero" className="float-animation" style={{ width: '110%', height: '110%', objectFit: 'contain' }} />
+            <img 
+              src="/Portada.png" 
+              alt="Visual Hero" 
+              className="float-animation" 
+              style={{ width: '110%', height: '110%', objectFit: 'contain' }} 
+            />
           </div>
         </div>
       </div>
