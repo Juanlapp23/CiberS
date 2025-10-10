@@ -1,25 +1,64 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, lazy, Suspense } from 'react';
+import { BrowserRouter, Routes, Route, useParams } from 'react-router-dom';
 import AOS from 'aos';
-import 'aos/dist/aos.css'; // Importa los estilos de AOS
+import 'aos/dist/aos.css';
 import './App.css';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import Section from './components/Section';
+import CountUp from './components/CountUp'; // Importamos el componente del contador
 import ModuleCard from './components/ModuleCard';
 import TestimonialCard from './components/TestimonialCard';
 import { modulesData } from './data/modules';
 import { testimonialsData } from './data/testimonials';
 import { faqData } from './data/faq';
 
-function App() {
-  // Inicializa AOS una vez que el componente se monta
-  useEffect(() => {
-    AOS.init({
-      duration: 800, // Duración de la animación
-      once: true,    // La animación ocurre solo una vez
-    });
-  }, []);
+// Componente para manejar la vista de módulos individuales
+const ModuloViewer = () => {
+  const { id } = useParams(); // Obtiene el ID de la URL
+  const moduleId = parseInt(id, 10); // Convierte a número entero
 
+  // Verifica si el ID corresponde a un módulo válido en modulesData
+  const module = modulesData.find(m => m.id === moduleId);
+  if (!module) {
+    return (
+      <div className="modulo-container">
+        <div className="error-message">
+          <h2>Módulo no encontrado</h2>
+          <p>El módulo con ID {id} no existe. <a href="/">Volver al inicio</a></p>
+        </div>
+      </div>
+    );
+  }
+
+  // Carga dinámica del módulo específico
+  const ModuloComponent = lazy(() => 
+    import(`../modulos/Clases/modulo${moduleId}.jsx`).catch(() => {
+      // Fallback solo si el archivo no se encuentra
+      return Promise.resolve({ default: () => (
+        <div className="modulo-container">
+          <h2>Módulo {moduleId}: {module.title}</h2>
+          <p>Este módulo aún no tiene contenido desarrollado. Por favor, verifica más tarde o contacta al soporte.</p>
+          <button onClick={() => window.history.back()}>Volver</button>
+        </div>
+      )});
+    })
+  );
+
+  return (
+    <Suspense fallback={
+      <div className="loading-container">
+        <div className="loading-spinner"></div>
+        <p>Cargando módulo {module.title}...</p>
+      </div>
+    }>
+      <ModuloComponent />
+    </Suspense>
+  );
+};
+
+// Componente principal de la página de inicio
+const HomePage = () => {
   const [formData, setFormData] = useState({
     nombre: '',
     email: '',
@@ -36,15 +75,20 @@ function App() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Aquí iría la lógica para enviar el formulario
     console.log('Formulario enviado:', formData);
     alert('¡Gracias por tu mensaje! Te contactaremos pronto.');
     setFormData({ nombre: '', email: '', mensaje: '' });
   };
 
+  useEffect(() => {
+    AOS.init({
+      duration: 800,
+      once: true,
+    });
+  }, []);
+
   return (
-    <div className="app">
-      <Header />
+    <>
       <Hero />
 
       {/* Quiénes somos */}
@@ -81,24 +125,21 @@ function App() {
             <div className="mission-card"> 
               <div className="card-icon">🎯</div>
               <h3>NUESTRA MISIÓN</h3>
-              <p>Impulsar a los estudiantes hacia la excelencia en ciberseguridad, ofreciendo una formación gratuita y de alta calidad que fortalezca sus conocimientos y habilidades para enfrentar los desafíos del entorno digital.
-              </p>
+              <p>Impulsar a los estudiantes hacia la excelencia en ciberseguridad, ofreciendo una formación gratuita y de alta calidad que fortalezca sus conocimientos y habilidades para enfrentar los desafíos del entorno digital.</p>
             </div>
           </div>
           <div className="mission-card-wrapper" data-aos="fade-up" data-aos-delay="100">
             <div className="mission-card"> 
               <div className="card-icon">🔭</div>
               <h3>NUESTRA VISIÓN</h3>
-              <p>Consolidarnos como el centro líder en formación en ciberseguridad de Colombia y Latinoamérica, promoviendo el desarrollo de profesionales capaces de liderar la protección y transformación digital del futuro.
-              </p>
+              <p>Consolidarnos como el centro líder en formación en ciberseguridad de Colombia y Latinoamérica, promoviendo el desarrollo de profesionales capaces de liderar la protección y transformación digital del futuro.</p>
             </div>
           </div>
           <div className="mission-card-wrapper" data-aos="fade-up" data-aos-delay="200">
             <div className="mission-card"> 
               <div className="card-icon">💎</div>
               <h3>NUESTROS VALORES</h3>
-              <p>Fomentamos la excelencia y la innovación con pasión, manteniendo un firme compromiso con el aprendizaje de nuestros estudiantes y el fortalecimiento de la comunidad de ciberseguridad.
-              </p>
+              <p>Fomentamos la excelencia y la innovación con pasión, manteniendo un firme compromiso con el aprendizaje de nuestros estudiantes y el fortalecimiento de la comunidad de ciberseguridad.</p>
             </div>
           </div>
         </div>
@@ -108,19 +149,18 @@ function App() {
       <Section 
         id="modulos" 
         title="Nuestros módulos formativos" 
-        subtitle="Domina la ciberseguridad con nuestro plan de estudios integral, enfocado en la práctica y el aprendizaje aplicado.
-"
+        subtitle="Domina la ciberseguridad con nuestro plan de estudios integral, enfocado en la práctica y el aprendizaje aplicado."
         className="modules-section"
       >
         <div className="modules-grid">
           {modulesData.map((module, index) => (
-            // ModuleCard internamente ya debe tener su data-aos
             <ModuleCard
               key={module.id}
               title={module.title}
               description={module.description}
               isFree={module.isFree}
               index={index}
+              id={module.id} // Prop necesaria para navegación
             />
           ))}
         </div>
@@ -136,20 +176,32 @@ function App() {
         <div className="importance-content">
           <div className="importance-text">
             <p>
-              En la era digital actual, las amenazas evolucionan constantemente y la protección 
-              de datos se ha convertido en una necesidad crítica para individuos y organizaciones.
+            En la era digital actual, las amenazas cibernéticas no solo evolucionan, sino que se vuelven más inteligentes, sigilosas y devastadoras cada día. La protección de los datos ya no es una opción, sino una cuestión de supervivencia para individuos, empresas y gobiernos. Un solo descuido puede abrir la puerta a ataques capaces de robar identidades, paralizar sistemas enteros o destruir reputaciones en segundos. La seguridad digital se ha convertido en la primera línea de defensa en un mundo donde la información vale más que el oro.
+
             </p>
             <div className="stats-grid">
               <div className="stat-card" data-aos="zoom-in">
-                <h3>95%</h3>
+                <h3>
+                  <CountUp from={0} to={95} duration={2} />%
+                </h3>
                 <p>de las brechas de seguridad son causadas por error humano</p>
               </div>
               <div className="stat-card" data-aos="zoom-in" data-aos-delay="100">
-                <h3>+600%</h3>
+                <h3>
+                  +<CountUp from={0} to={600} duration={2} />%
+                </h3>
                 <p>aumento en ciberataques desde el inicio de la pandemia</p>
               </div>
               <div className="stat-card" data-aos="zoom-in" data-aos-delay="200">
-                <h3>3.5M</h3>
+                <h3>
+                  <CountUp 
+                    from={0} 
+                    to={3.5} 
+                    duration={2} 
+                    decimals={1} 
+                  />
+                  M
+                </h3>
                 <p>puestos de trabajo en ciberseguridad sin cubrir a nivel global</p>
               </div>
             </div>
@@ -323,60 +375,79 @@ function App() {
           </div>
         </div>
       </Section>
+    </>
+  );
+};
 
-      {/* Footer */}
-      <footer className="footer">
-        <div className="container">
-          <div className="footer-content">
-            <div className="footer-brand">
-              <div className="logo">
-                <img src="/logoCS.png" alt="Ciber Guardians" className="float-animation" />
-                <span>Ciber Guardians</span>
+function App() {
+  return (
+    <BrowserRouter>
+      <div className="app">
+        <Header />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/modulo/:id" element={<ModuloViewer />} />
+          <Route path="*" element={
+            <div className="error-page">
+              <h1>404 - Página no encontrada</h1>
+              <p><a href="/">Volver al inicio</a></p>
+            </div>
+          } />
+        </Routes>
+
+        <footer className="footer">
+          <div className="container">
+            <div className="footer-content">
+              <div className="footer-brand">
+                <div className="logo">
+                  <img src="/logoCS.png" alt="Ciber Guardians" className="float-animation" />
+                  <span>Ciber Guardians</span>
+                </div>
+                <p>
+                  Formando a los profesionales en ciberseguridad del mañana. 
+                  Educación gratuita y accesible para todos.
+                </p>
+                <div className="social-links">
+                  <a href="#" aria-label="Facebook">📘</a>
+                  <a href="#" aria-label="Twitter">🐦</a>
+                  <a href="#" aria-label="LinkedIn">💼</a>
+                  <a href="#" aria-label="YouTube">📺</a>
+                </div>
               </div>
-              <p>
-                Formando a los profesionales en ciberseguridad del mañana. 
-                Educación gratuita y accesible para todos.
-              </p>
-              <div className="social-links">
-                <a href="#" aria-label="Facebook">📘</a>
-                <a href="#" aria-label="Twitter">🐦</a>
-                <a href="#" aria-label="LinkedIn">💼</a>
-                <a href="#" aria-label="YouTube">📺</a>
+              
+              <div className="footer-links">
+                <div className="footer-column">
+                  <h4>Navegación</h4>
+                  <a href="/">Inicio</a>
+                  <a href="/#modulos">Módulos</a>
+                  <a href="/#ventajas">Ventajas</a>
+                  <a href="/#testimonios">Testimonios</a>
+                </div>
+                
+                <div className="footer-column">
+                  <h4>Legal</h4>
+                  <a href="/#privacidad">Política de privacidad</a>
+                  <a href="/#terminos">Términos de servicio</a>
+                  <a href="/#cookies">Política de cookies</a>
+                </div>
+                
+                <div className="footer-column">
+                  <h4>Contacto</h4>
+                  <a href="mailto:info@ciberguardians.com">info@ciberguardians.com</a>
+                  <a href="tel:+525512345678">+52 55 1234 5678</a>
+                  <span>Ciudad de México, MX</span>
+                </div>
               </div>
             </div>
             
-            <div className="footer-links">
-              <div className="footer-column">
-                <h4>Navegación</h4>
-                <a href="#inicio">Inicio</a>
-                <a href="#modulos">Módulos</a>
-                <a href="#ventajas">Ventajas</a>
-                <a href="#testimonios">Testimonios</a>
-              </div>
-              
-              <div className="footer-column">
-                <h4>Legal</h4>
-                <a href="#privacidad">Política de privacidad</a>
-                <a href="#terminos">Términos de servicio</a>
-                <a href="#cookies">Política de cookies</a>
-              </div>
-              
-              <div className="footer-column">
-                <h4>Contacto</h4>
-                <a href="mailto:info@ciberguardians.com">info@ciberguardians.com</a>
-                <a href="tel:+525512345678">+52 55 1234 5678</a>
-                <span>Ciudad de México, MX</span>
-              </div>
+            <div className="footer-bottom">
+              <p>&copy; 2024 Ciber Guardians. Todos los derechos reservados.</p>
+              <p>Hecho con ❤️ para la comunidad latinoamericana</p>
             </div>
           </div>
-          
-          <div className="footer-bottom">
-            <p>&copy; 2024 Ciber Guardians. Todos los derechos reservados.</p>
-            <p>Hecho con ❤️ para la comunidad latinoamericana</p>
-          </div>
-        </div>
-      </footer>
-    </div>
+        </footer>
+      </div>
+    </BrowserRouter>
   );
 }
 

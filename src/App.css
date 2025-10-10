@@ -641,10 +641,12 @@
     text-align: center;
     margin-bottom: var(--space-2xl);
     opacity: 0.9;
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
   }
   
   .stats-grid {
     display: grid;
+    
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: var(--space-xl);
   }
