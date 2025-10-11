@@ -1,5 +1,6 @@
 // src/components/Hero.jsx
 import TextType from './TextType';
+import { Link } from 'react-router-dom';
 import CountUp from './CountUp';
 import Magnet from './Magnet';
 
@@ -10,13 +11,6 @@ const Hero = () => {
       element.scrollIntoView({ behavior: 'smooth' });
     }
   };
-
-  // Componente para texto con gradiente
-  const GradientText = ({ children, className = "" }) => (
-    <span className={`bg-gradient-to-r from-blue-400 to-purple-600 bg-clip-text text-transparent ${className}`}>
-      {children}
-    </span>
-  );
 
   return (
     <section id="inicio" className="hero">
@@ -42,12 +36,10 @@ const Hero = () => {
             primeros pasos en seguridad digital y aumentar su sueldo con una profesión de alta demanda.
           </p>
           <div className="hero-actions">
-            <button 
-              className="cta-button primary"
-              onClick={() => scrollToSection('modulos')}
-            >
-              Ver módulos disponibles
-            </button>
+          <a href="/Todolosmodulos.html" className="cta-button primary">
+  Ver módulos disponibles
+</a>
+
             
             <Magnet 
               padding={30} 
@@ -66,41 +58,32 @@ const Hero = () => {
           <div className="hero-stats">
             <div className="stat">
               <strong>
-                <GradientText>
-                  +<CountUp 
-                    from={0} 
-                    to={835} 
-                    duration={1.5} 
-                    separator=","
-                    className="font-bold text-2xl"
-                  />
-                </GradientText>
+                +<CountUp 
+                  from={0} 
+                  to={835} 
+                  duration={1.5} 
+                  separator=","
+                />
               </strong>
               <span>Estudiantes</span>
             </div>
             <div className="stat">
               <strong>
-                <GradientText>
-                  <CountUp 
-                    from={0} 
-                    to={22} 
-                    duration={2} 
-                    className="font-bold text-2xl"
-                  />
-                </GradientText>
+                <CountUp 
+                  from={0} 
+                  to={22} 
+                  duration={2} 
+                />
               </strong>
               <span>Módulos</span>
             </div>
             <div className="stat">
               <strong>
-                <GradientText>
-                  <CountUp 
-                    from={0} 
-                    to={100} 
-                    duration={2} 
-                    className="font-bold text-2xl"
-                  />%
-                </GradientText>
+                <CountUp 
+                  from={0} 
+                  to={100} 
+                  duration={2} 
+                />%
               </strong>
               <span>Gratuito</span>
             </div>
@@ -110,7 +93,7 @@ const Hero = () => {
         <div className="hero-visual">
           <div className="hero-image">
             <img 
-              src="/Portada.png" 
+              src="/img/Portada.png" 
               alt="Visual Hero" 
               className="float-animation" 
               style={{ width: '110%', height: '110%', objectFit: 'contain' }} 

@@ -102,7 +102,7 @@ const HomePage = () => {
         <div className="about-content">
           <div className="about-visual">
             <div className="team-illustration">
-              <img src="/logoCS.png" alt="Equipo Ciber Guardians" className="float-animation" />
+              <img src="/img/logoCS.png" alt="Equipo Ciber Guardians" className="float-animation" />
             </div>
           </div>
           <div className="about-text">
@@ -145,26 +145,11 @@ const HomePage = () => {
         </div>
       </Section>
 
-      {/* Módulos */}
-      <Section 
-        id="modulos" 
-        title="Nuestros módulos formativos" 
-        subtitle="Domina la ciberseguridad con nuestro plan de estudios integral, enfocado en la práctica y el aprendizaje aplicado."
-        className="modules-section"
-      >
-        <div className="modules-grid">
-          {modulesData.map((module, index) => (
-            <ModuleCard
-              key={module.id}
-              title={module.title}
-              description={module.description}
-              isFree={module.isFree}
-              index={index}
-              id={module.id} // Prop necesaria para navegación
-            />
-          ))}
-        </div>
-      </Section>
+      {/* Clases de CiberS */}+
+
+
+    
+      {/* Fin de clases de CiberS*/}
 
       {/* Importancia de la ciberseguridad */}
       <Section 
@@ -400,7 +385,7 @@ function App() {
             <div className="footer-content">
               <div className="footer-brand">
                 <div className="logo">
-                  <img src="/logoCS.png" alt="Ciber Guardians" className="float-animation" />
+                  <img src="/img/logoCS.png" alt="Ciber Guardians" className="float-animation" />
                   <span>Ciber Guardians</span>
                 </div>
                 <p>

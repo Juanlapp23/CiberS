@@ -293,9 +293,19 @@
   }
   
   .stat span {
-    font-size: 1.9rem;
-    opacity: 0.8;
-    
+    font-size: var(--font-size-2xl);
+    background: linear-gradient(135deg, #ffd89b 0%, #19547b 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-stats .stat strong {
+    background: linear-gradient(135deg, #ffd89b 0%, #19547b 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-size: var(--font-size-4xl); /* Ajustamos el tamaño para que sea igual */
   }
   
   .hero-visual {

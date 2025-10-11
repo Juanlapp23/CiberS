@@ -46,7 +46,7 @@ const Header = () => {
             scrollToSection('inicio');
           }}
         >
-          <img src="/logoCS.png" alt="Ciber Guardians Logo" />
+          <img src="/img/logoCS.png" alt="Ciber Guardians Logo" />
           <span>Ciber Guardians</span>
         </a>
         
