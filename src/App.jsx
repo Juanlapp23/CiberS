@@ -1,4 +1,4 @@
-import { useState, useEffect, lazy, Suspense } from 'react';
+import { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, useParams } from 'react-router-dom';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
@@ -14,48 +14,7 @@ import { testimonialsData } from './data/testimonials';
 import { faqData } from './data/faq';
 
 // Componente para manejar la vista de módulos individuales
-const ModuloViewer = () => {
-  const { id } = useParams(); // Obtiene el ID de la URL
-  const moduleId = parseInt(id, 10); // Convierte a número entero
-
-  // Verifica si el ID corresponde a un módulo válido en modulesData
-  const module = modulesData.find(m => m.id === moduleId);
-  if (!module) {
-    return (
-      <div className="modulo-container">
-        <div className="error-message">
-          <h2>Módulo no encontrado</h2>
-          <p>El módulo con ID {id} no existe. <a href="/">Volver al inicio</a></p>
-        </div>
-      </div>
-    );
-  }
-
-  // Carga dinámica del módulo específico
-  const ModuloComponent = lazy(() => 
-    import(`../modulos/Clases/modulo${moduleId}.jsx`).catch(() => {
-      // Fallback solo si el archivo no se encuentra
-      return Promise.resolve({ default: () => (
-        <div className="modulo-container">
-          <h2>Módulo {moduleId}: {module.title}</h2>
-          <p>Este módulo aún no tiene contenido desarrollado. Por favor, verifica más tarde o contacta al soporte.</p>
-          <button onClick={() => window.history.back()}>Volver</button>
-        </div>
-      )});
-    })
-  );
-
-  return (
-    <Suspense fallback={
-      <div className="loading-container">
-        <div className="loading-spinner"></div>
-        <p>Cargando módulo {module.title}...</p>
-      </div>
-    }>
-      <ModuloComponent />
-    </Suspense>
-  );
-};
+// ...existing code...
 
 // Componente principal de la página de inicio
 const HomePage = () => {
@@ -371,7 +330,6 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/modulo/:id" element={<ModuloViewer />} />
           <Route path="*" element={
             <div className="error-page">
               <h1>404 - Página no encontrada</h1>
@@ -379,7 +337,6 @@ function App() {
             </div>
           } />
         </Routes>
-
         <footer className="footer">
           <div className="container">
             <div className="footer-content">
@@ -388,18 +345,7 @@ function App() {
                   <img src="/img/logoCS.png" alt="Ciber Guardians" className="float-animation" />
                   <span>Ciber Guardians</span>
                 </div>
-                <p>
-                  Formando a los profesionales en ciberseguridad del mañana. 
-                  Educación gratuita y accesible para todos.
-                </p>
-                <div className="social-links">
-                  <a href="#" aria-label="Facebook">📘</a>
-                  <a href="#" aria-label="Twitter">🐦</a>
-                  <a href="#" aria-label="LinkedIn">💼</a>
-                  <a href="#" aria-label="YouTube">📺</a>
-                </div>
               </div>
-              
               <div className="footer-links">
                 <div className="footer-column">
                   <h4>Navegación</h4>
@@ -408,14 +354,12 @@ function App() {
                   <a href="/#ventajas">Ventajas</a>
                   <a href="/#testimonios">Testimonios</a>
                 </div>
-                
                 <div className="footer-column">
                   <h4>Legal</h4>
                   <a href="/#privacidad">Política de privacidad</a>
                   <a href="/#terminos">Términos de servicio</a>
                   <a href="/#cookies">Política de cookies</a>
                 </div>
-                
                 <div className="footer-column">
                   <h4>Contacto</h4>
                   <a href="mailto:info@ciberguardians.com">info@ciberguardians.com</a>
@@ -424,7 +368,6 @@ function App() {
                 </div>
               </div>
             </div>
-            
             <div className="footer-bottom">
               <p>&copy; 2024 Ciber Guardians. Todos los derechos reservados.</p>
               <p>Hecho con ❤️ para la comunidad latinoamericana</p>

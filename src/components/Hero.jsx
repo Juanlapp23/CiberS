@@ -36,7 +36,7 @@ const Hero = () => {
             primeros pasos en seguridad digital y aumentar su sueldo con una profesión de alta demanda.
           </p>
           <div className="hero-actions">
-          <a href="/Todolosmodulos.html" className="cta-button primary">
+          <a href="./public/html/Todolosmodulos.html" className="cta-button primary">
   Ver módulos disponibles
 </a>
 
