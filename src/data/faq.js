@@ -7,7 +7,7 @@ export const faqData = [
     {
       id: 2,
       question: "¿Otorgan certificación?",
-      answer: "Ofrecemos certificados de finalización gratuitos que puedes añadir a tu LinkedIn y CV."
+      answer: "No, no otorgamos certificados. Nuestro contenido es para aprendizaje básico personal desde cero para entrar en el mundo de la seguridad digital."
     },
     {
       id: 3,
@@ -22,7 +22,7 @@ export const faqData = [
     {
       id: 5,
       question: "¿De dónde son?",
-      answer: "Ciber Guardians tiene sus raíces en México, pero nuestra influencia se extiende mucho más allá. Actualmente, contamos con más de 400 alumnos en toda América Latina."
+      answer: "Ciber Guardians tiene sus raíces en Bogotá, Colombia, y nuestra influencia se extiende mucho más allá. Actualmente, contamos con más de 12,000 alumnos en toda América Latina."
     },
     {
       id: 6,
