@@ -3,6 +3,7 @@ import TextType from './TextType';
 import { Link } from 'react-router-dom';
 import CountUp from './CountUp';
 import Magnet from './Magnet';
+import GradualBlur from './ui/GradualBlur';
 
 const Hero = () => {
   const scrollToSection = (sectionId) => {
@@ -13,7 +14,7 @@ const Hero = () => {
   };
 
   return (
-    <section id="inicio" className="hero">
+    <section id="inicio" className="hero" style={{ position: 'relative', overflow: 'hidden' }}>
       <div className="hero-content container">
         <div className="hero-text">
           <h1 className="hero-title">
