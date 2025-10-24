@@ -872,6 +872,106 @@
     gap: var(--space-xl);
   }
   
+  /* ===== FAQ SECTION ===== */
+  
+  .faq-answer p {
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.6;
+  }
+  
+  /* FAQ Show More Button */
+  .faq-show-more-container {
+    display: flex;
+    justify-content: center;
+    margin-top: var(--space-lg);
+  }
+  
+  .faq-show-more-btn {
+    position: relative;
+    margin: 0;
+    padding: 17px 35px;
+    outline: none;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    text-transform: uppercase;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-lg);
+    color: white;
+    font-weight: 500;
+    font-family: inherit;
+    z-index: 0;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.02, 0.01, 0.47, 1);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  .faq-show-more-btn span {
+    color: white;
+    font-size: var(--font-size-base);
+    font-weight: 500;
+    letter-spacing: 0.7px;
+    z-index: 20;
+  }
+  
+  .faq-show-more-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
+  }
+  
+  .faq-show-more-btn:hover span {
+    animation: storm1261 0.7s ease-in-out both;
+    animation-delay: 0.06s;
+  }
+  
+  .faq-show-more-btn:after {
+    background: linear-gradient(90deg, var(--primary-color), #00aaff, var(--primary-color));
+    content: "";
+    height: 155px;
+    left: -75px;
+    opacity: 0.2;
+    position: absolute;
+    top: -50px;
+    transform: rotate(35deg);
+    transition: all 550ms cubic-bezier(0.19, 1, 0.22, 1);
+    width: 50px;
+    z-index: -10;
+  }
+  
+  .faq-show-more-btn:hover:after {
+    left: 120%;
+    transition: all 550ms cubic-bezier(0.19, 1, 0.22, 1);
+  }
+  
+  @keyframes storm1261 {
+    0% {
+      transform: translate3d(0, 0, 0) translateZ(0);
+    }
+  
+    25% {
+      transform: translate3d(4px, 0, 0) translateZ(0);
+    }
+  
+    50% {
+      transform: translate3d(-3px, 0, 0) translateZ(0);
+    }
+  
+    75% {
+      transform: translate3d(2px, 0, 0) translateZ(0);
+    }
+  
+    100% {
+      transform: translate3d(0, 0, 0) translateZ(0);
+    }
+  }
+  
+  /* ===== CONTACT SECTION ===== */
   .stat-card {
     text-align: center;
     padding: var(--space-xl);
@@ -1391,6 +1491,11 @@
     box-shadow: var(--shadow-md);
     overflow: hidden;
     transition: all var(--transition-normal);
+    opacity: 1;
+  }
+  
+  .faq-item.hidden {
+    display: none;
   }
   
   .faq-item:hover {
@@ -2054,6 +2159,348 @@
     fill: currentColor;
   }
   
+  /* ===== COMMENTS SECTION ===== */
+  .comments-section {
+    background: #000000;
+    padding: 4rem 0;
+    position: relative;
+    font-family: 'Courier New', Courier, monospace;
+  }
+
+  .comments-section .section-background-text {
+    color: #0a0a0a;
+    opacity: 0.3;
+    top: -30px;
+  }
+
+  .comments-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  /* Comment Form */
+  .comment-form {
+    background: rgba(10, 10, 10, 0.7);
+    border: 1px solid #00ff88;
+    border-radius: 8px;
+    padding: 2rem;
+    margin-bottom: 3rem;
+    box-shadow: 0 0 15px rgba(0, 255, 136, 0.2);
+    position: relative;
+    overflow: hidden;
+    transition: box-shadow 0.3s ease;
+  }
+
+  .comment-form:hover {
+    box-shadow: 0 0 25px rgba(0, 255, 136, 0.4);
+  }
+
+  .comment-form::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #00ff88, transparent);
+    animation: borderPulse 2s infinite;
+  }
+
+  @keyframes borderPulse {
+    0% {
+      opacity: 0.5;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0.5;
+    }
+  }
+
+  .comment-form-title {
+    font-size: 1.5rem;
+    color: #00ff88;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-shadow: 0 0 5px rgba(0, 255, 136, 0.5);
+  }
+
+  .form-group-comment {
+    margin-bottom: 1.5rem;
+  }
+
+  .form-group-comment label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .form-group-comment input,
+  .form-group-comment textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid #00aa66;
+    border-radius: 4px;
+    color: #ffffff;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+  }
+
+  .form-group-comment input::placeholder,
+  .form-group-comment textarea::placeholder {
+    color: rgba(0, 255, 136, 0.4);
+  }
+
+  .form-group-comment input:focus,
+  .form-group-comment textarea:focus {
+    outline: none;
+    border-color: #00ff88;
+    box-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
+  }
+
+  .form-group-comment textarea {
+    min-height: 120px;
+    resize: vertical;
+  }
+
+  .submit-comment-btn {
+    background: #00ff88;
+    color: #000000;
+    border: none;
+    border-radius: 4px;
+    padding: 0.75rem 2rem;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .submit-comment-btn:hover {
+    background: #00cc66;
+    box-shadow: 0 0 15px rgba(0, 255, 136, 0.7);
+    transform: translateY(-2px);
+  }
+
+  .submit-comment-btn:active {
+    transform: translateY(0);
+  }
+
+  .submit-comment-btn::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -60%;
+    width: 20px;
+    height: 200%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: rotate(30deg);
+    transition: all 0.6s ease;
+  }
+
+  .submit-comment-btn:hover::after {
+    left: 120%;
+  }
+
+  /* Comments List */
+  .comments-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .comment-item {
+    background: rgba(10, 10, 10, 0.7);
+    border: 1px solid #00aa66;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+
+  .comment-item:hover {
+    border-color: #00ff88;
+    box-shadow: 0 0 15px rgba(0, 255, 136, 0.3);
+    transform: translateY(-3px);
+  }
+
+  .comment-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: #00ff88;
+    box-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
+  }
+
+  .comment-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+
+  .comment-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #0a0a0a, #00aa66);
+    border: 1px solid #00ff88;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #00ff88;
+    font-weight: bold;
+    font-size: 0.9rem;
+    margin-right: 1rem;
+    flex-shrink: 0;
+    box-shadow: 0 0 8px rgba(0, 255, 136, 0.3);
+  }
+
+  .comment-author {
+    color: #00ff88;
+    font-weight: bold;
+    margin-right: 0.5rem;
+    font-size: 1rem;
+  }
+
+  .comment-time {
+    color: rgba(0, 255, 136, 0.6);
+    font-size: 0.8rem;
+  }
+
+  .comment-content {
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.6;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    font-family: 'Courier New', Courier, monospace;
+  }
+
+  .comment-actions {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .comment-action {
+    background: none;
+    border: none;
+    color: rgba(0, 255, 136, 0.7);
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+  }
+
+  .comment-action:hover {
+    color: #00ff88;
+    text-shadow: 0 0 5px rgba(0, 255, 136, 0.5);
+  }
+
+  .comment-reply-form {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px dashed rgba(0, 255, 136, 0.3);
+  }
+
+  .comment-replies {
+    margin-top: 1.5rem;
+    padding-left: 2rem;
+    border-left: 1px dashed rgba(0, 255, 136, 0.2);
+  }
+
+  .comment-count {
+    color: #00ff88;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 1.2rem;
+    text-shadow: 0 0 5px rgba(0, 255, 136, 0.5);
+  }
+
+  /* Nested comments */
+  .comment-item .comment-item {
+    background: rgba(5, 5, 5, 0.5);
+    margin-bottom: 1rem;
+  }
+
+  .comment-item .comment-item:hover {
+    transform: translateY(-2px);
+  }
+
+  .comment-item .comment-item::before {
+    width: 2px;
+    background: #00aa66;
+  }
+
+  /* Show More Button */
+  .show-more-container {
+    text-align: center;
+    margin-top: 2rem;
+  }
+
+  .show-more-btn {
+    background: rgba(0, 255, 136, 0.1);
+    color: #00ff88;
+    border: 1px solid #00ff88;
+    border-radius: 4px;
+    padding: 0.75rem 2rem;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .show-more-btn:hover {
+    background: rgba(0, 255, 136, 0.2);
+    box-shadow: 0 0 15px rgba(0, 255, 136, 0.4);
+    transform: translateY(-2px);
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .comments-section {
+      padding: 3rem 0;
+    }
+    
+    .comment-form {
+      padding: 1.5rem;
+    }
+    
+    .comment-item {
+      padding: 1rem;
+    }
+    
+    .comment-replies {
+      padding-left: 1rem;
+    }
+    
+    .comment-form-title {
+      font-size: 1.2rem;
+    }
+  }
+
   /* ===== FOOTER PREMIUM ===== */
   .footer-premium {
     background: #0a0a0a;
@@ -2262,11 +2709,19 @@
     color: #00ff80;
   }
   
+  .copyright-legal {
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 0.8rem;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
   /* Footer Bottom */
   .footer-bottom {
     border-top: 1px solid rgba(255, 255, 255, 0.05);
-    padding: 2rem;
-    background: rgba(5, 5, 5, 0.98);
+    padding: 0;
+    background: transparent;
   }
   
   .footer-bottom-line-1 {
@@ -2278,15 +2733,43 @@
     gap: 1rem;
   }
   
+  .copyright-section {
+    flex: 1;
+  }
+  
   .copyright-section p {
     font-size: 0.9rem;
     color: rgba(255, 255, 255, 0.6);
     margin: 0;
   }
   
+  .footer-brand-inline {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.5rem;
+    flex: 1;
+    text-align: right;
+  }
+  
+  .brand-name-inline {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0;
+  }
+  
+  .brand-tagline-inline {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin: 0;
+  }
+  
   .security-badges {
     display: flex;
     gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: flex-end;
   }
   
   .security-badge {
@@ -2296,6 +2779,9 @@
     padding: 0.4rem 0.8rem;
     border-radius: 50px;
     border: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
   }
   
   .footer-bottom-line-2 {
@@ -2716,13 +3202,12 @@
 
 .brands-title {
   text-align: center;
-  font-size: 1rem;
-  color: rgba(255, 255, 255, 0.6);
-  text-transform: uppercase;
-  letter-spacing: 2px;
+  font-size: var(--font-size-4xl);
+  font-family: 'Space Mono', monospace;
+  font-weight: 800;
+  color: white;
+  margin-bottom: var(--space-md);
   margin-bottom: 3rem;
-  font-weight: 600;
-  font-family: 'Inter', sans-serif;
 }
 
 .brands-scroll {
@@ -2797,7 +3282,11 @@
 
   .brands-title {
     margin-bottom: 2rem;
-    font-size: 0.875rem;
+    font-size: var(--font-size-4xl);
+    font-family: 'Space Mono', monospace;
+    font-weight: 800;
+    color: white;
+    margin-bottom: var(--space-md);
   }
 
   .brands-scroll {

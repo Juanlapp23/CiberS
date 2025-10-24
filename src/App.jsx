@@ -8,7 +8,6 @@ import Hero from './components/Hero';
 import Section from './components/Section';
 import CountUp from './components/CountUp'; // Importamos el componente del contador
 import ModuleCard from './components/ModuleCard';
-import TestimonialCard from './components/TestimonialCard';
 import { motion } from 'framer-motion';
 import { modulesData } from './data/modules';
 import { testimonialsData } from './data/testimonials';
@@ -66,6 +65,7 @@ const HomePage = () => {
     email: '',
     mensaje: ''
   });
+  const [showAllFAQs, setShowAllFAQs] = useState(false);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -317,26 +317,6 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* Testimonios */}
-      <Section
-        id="testimonios"
-        title="Lo que dicen nuestros estudiantes"
-        subtitle="Experiencias reales de nuestra comunidad"
-        className="testimonials-section"
-      >
-        <div className="section-background-text">Reviews</div>
-        <div className="testimonials-grid">
-          {testimonialsData.map(testimonial => (
-            <TestimonialCard
-              key={testimonial.id}
-              quote={testimonial.quote}
-              name={testimonial.name}
-              role={testimonial.role}
-            />
-          ))}
-        </div>
-      </Section>
-
       {/* FAQ */}
       <Section
         id="faq"
@@ -346,7 +326,7 @@ const HomePage = () => {
       >
         <div className="section-background-text">FAQ</div>
         <div className="faq-list">
-          {faqData.map((item) => (
+          {faqData.slice(0, showAllFAQs ? faqData.length : 3).map((item) => (
             <details className="faq-item" key={item.id} data-aos="fade-up">
               <summary className="faq-question">
                 {item.question}
@@ -357,6 +337,16 @@ const HomePage = () => {
               </div>
             </details>
           ))}
+        </div>
+        
+        {/* Show More Button */}
+        <div className="faq-show-more-container">
+          <button 
+            className="faq-show-more-btn btn-shine"
+            onClick={() => setShowAllFAQs(!showAllFAQs)}
+          >
+            <span>{showAllFAQs ? 'Mostrar menos FAQ' : 'Mostrar más FAQ'}</span>
+          </button>
         </div>
       </Section>
 
@@ -409,7 +399,7 @@ const HomePage = () => {
                 </a>
                 <a href="#" className="social-icon" aria-label="Instagram">
                   <svg viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.689-.072 4.849-.072zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.689-.072 4.948-.072zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
                       </svg>
                   </a>
               </div>
@@ -471,7 +461,7 @@ const HomePage = () => {
               </div>
               <div className="card-info">
                 <h4>Email us</h4>
-                <p>info@ciberguardians.com</p>
+                <p>ciberguardian@gmail.com</p>
               </div>
               <span className="card-arrow">→</span>
             </div>
@@ -484,7 +474,7 @@ const HomePage = () => {
               </div>
               <div className="card-info">
                 <h4>Call us</h4>
-                <p>+52 55 1234 5678</p>
+                <p>+57 3011471160</p>
               </div>
               <span className="card-arrow">→</span>
             </div>
@@ -498,19 +488,12 @@ const HomePage = () => {
               </div>
               <div className="card-info">
                 <h4>Our location</h4>
-                <p>Ciudad de México, MX</p>
+                <p>Bogotá, Colombia</p>
               </div>
               <span className="card-arrow">→</span>
             </div>
           </div>
 
-          {/* INICIO DE TESTIMONIOS */}
-          <div className="testimonials-intro">
-            <span className="testimonials-badge">Testimonials</span>
-            <h2 className="testimonials-preview-title">
-              Reviews from 1000+ customers
-            </h2>
-          </div>
         </div>
       </Section>
 
@@ -550,6 +533,17 @@ function App() {
             </div>
           } />
         </Routes>
+        {/* ===== COMMENTS SECTION ===== */}
+        <Section
+          id="comentarios"
+          title="Comentarios de la Comunidad"
+          subtitle="Únete a la conversación de Ciber Guardians"
+          className="comments-section"
+        >
+          <div className="section-background-text">Comments</div>
+          <CommentsSection />
+        </Section>
+
         {/* ===== NEWSLETTER SECTION OVERLAY ===== */}
         <div className="newsletter-section-overlay">
           <div className="container">
@@ -578,7 +572,7 @@ function App() {
                   </a>
                   <a href="#" className="social-icon-overlay" aria-label="Instagram">
                     <svg viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.072 4.849-.072zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                      <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
                     </svg>
                   </a>
                 </div>
@@ -626,7 +620,6 @@ function App() {
                     <li><a href="/#quienes-somos">Quiénes somos</a></li>
                     <li><a href="/#importancia">Importancia</a></li>
                     <li><a href="/#ventajas">Ventajas</a></li>
-                    <li><a href="/#testimonios">Testimonios</a></li>
                     <li><a href="/#faq">FAQ</a></li>
                     <li><a href="/#contacto">Contacto</a></li>
                   </ul>
@@ -660,6 +653,7 @@ function App() {
                     <a href="/#privacidad">Política de privacidad</a>
                     <a href="/#terminos">Términos de servicio</a>
                     <a href="/#cookies">Política de cookies</a>
+                    <p className="copyright-legal">&copy; {new Date().getFullYear()} Ciber Guardians. Todos los derechos reservados.</p>
                   </div>
                 </div>
               </div>
@@ -668,19 +662,9 @@ function App() {
             {/* Footer Bottom */}
             <div className="footer-bottom">
               <div className="footer-bottom-line-1">
-                <div className="copyright-section">
-                  <p>&copy; {new Date().getFullYear()} Ciber Guardians. Todos los derechos reservados.</p>
-                </div>
-                <div className="security-badges">
-                  <span className="security-badge">🔒 SSL Encriptado</span>
-                  <span className="security-badge">🛡️ Datos Protegidos</span>
-                </div>
               </div>
 
               <div className="footer-bottom-line-2">
-                <div className="made-with-love">
-                  <p>Hecho con ❤️ para la comunidad latinoamericana</p>
-                </div>
               </div>
             </div>
           </div>
@@ -702,5 +686,245 @@ function App() {
     </BrowserRouter>
   );
 }
+
+// Componente de sección de comentarios
+const CommentsSection = () => {
+  const [comments, setComments] = useState([
+    {
+      id: 1,
+      author: "CyberNinja",
+      content: "Este curso me ha ayudado a entender conceptos complejos de ciberseguridad de una manera muy clara. ¡Recomendado 100%!",
+      timestamp: "2025-10-20T10:30:00Z",
+      avatar: "CN",
+      replies: [
+        {
+          id: 101,
+          author: "HackMaster",
+          content: "Totalmente de acuerdo. Los módulos sobre criptografía son excelentes.",
+          timestamp: "2025-10-20T14:15:00Z",
+          avatar: "HM"
+        }
+      ]
+    },
+    {
+      id: 2,
+      author: "SecurityGuru",
+      content: "La sección de hacking ético es increíble. Me ha permitido identificar vulnerabilidades en mis propios proyectos.",
+      timestamp: "2025-10-18T16:45:00Z",
+      avatar: "SG",
+      replies: []
+    }
+  ]);
+
+  const [newComment, setNewComment] = useState({
+    author: "",
+    content: ""
+  });
+
+  const [replyingTo, setReplyingTo] = useState(null);
+  const [replyContent, setReplyContent] = useState("");
+  const [showAllComments, setShowAllComments] = useState(false);
+
+  // Add some dummy comments for demonstration
+  const additionalComments = [
+    {
+      id: 3,
+      author: "JUJUAn",
+      content: "gergergeg",
+      timestamp: "2025-10-24T17:25:00Z",
+      avatar: "JU",
+      replies: [
+        {
+          id: 301,
+          author: "Usuario",
+          content: "Tambien digo lo mismo",
+          timestamp: "2025-10-24T17:26:00Z",
+          avatar: "U"
+        }
+      ]
+    }
+  ];
+
+  // Combine initial comments with additional comments
+  const allComments = [...comments, ...additionalComments];
+  const displayedComments = showAllComments ? allComments : comments;
+
+  const handleCommentChange = (e) => {
+    const { name, value } = e.target;
+    setNewComment(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleCommentSubmit = (e) => {
+    e.preventDefault();
+    if (newComment.author.trim() && newComment.content.trim()) {
+      const comment = {
+        id: Date.now(),
+        author: newComment.author,
+        content: newComment.content,
+        timestamp: new Date().toISOString(),
+        avatar: newComment.author.substring(0, 2).toUpperCase(),
+        replies: []
+      };
+      setComments(prev => [comment, ...prev]);
+      setNewComment({ author: "", content: "" });
+    }
+  };
+
+  const handleReplySubmit = (commentId) => {
+    if (replyContent.trim()) {
+      const reply = {
+        id: Date.now(),
+        author: "Usuario", // In a real app, this would be the logged-in user
+        content: replyContent,
+        timestamp: new Date().toISOString(),
+        avatar: "U"
+      };
+
+      setComments(prev => prev.map(comment => {
+        if (comment.id === commentId) {
+          return {
+            ...comment,
+            replies: [...comment.replies, reply]
+          };
+        }
+        return comment;
+      }));
+
+      setReplyContent("");
+      setReplyingTo(null);
+    }
+  };
+
+  const formatTime = (timestamp) => {
+    const date = new Date(timestamp);
+    return date.toLocaleDateString('es-ES', {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit'
+    });
+  };
+
+  return (
+    <div className="comments-container">
+      <div className="comment-count">
+        {allComments.length} {allComments.length === 1 ? 'comentario' : 'comentarios'}
+      </div>
+
+      {/* Formulario para nuevo comentario */}
+      <form className="comment-form" onSubmit={handleCommentSubmit}>
+        <h3 className="comment-form-title">Deja tu comentario</h3>
+        <div className="form-group-comment">
+          <label htmlFor="author">Nombre</label>
+          <input
+            type="text"
+            id="author"
+            name="author"
+            value={newComment.author}
+            onChange={handleCommentChange}
+            placeholder="Tu nombre de hacker"
+            required
+          />
+        </div>
+        <div className="form-group-comment">
+          <label htmlFor="content">Comentario</label>
+          <textarea
+            id="content"
+            name="content"
+            value={newComment.content}
+            onChange={handleCommentChange}
+            placeholder="Comparte tu experiencia con Ciber Guardians..."
+            required
+          ></textarea>
+        </div>
+        <button type="submit" className="submit-comment-btn">
+          Publicar Comentario
+        </button>
+      </form>
+
+      {/* Lista de comentarios */}
+      <ul className="comments-list">
+        {displayedComments.map(comment => (
+          <li key={comment.id} className="comment-item">
+            <div className="comment-header">
+              <div className="comment-avatar">{comment.avatar}</div>
+              <div>
+                <span className="comment-author">{comment.author}</span>
+                <span className="comment-time">{formatTime(comment.timestamp)}</span>
+              </div>
+            </div>
+            <div className="comment-content">
+              {comment.content}
+            </div>
+            <div className="comment-actions">
+              <button 
+                className="comment-action"
+                onClick={() => setReplyingTo(replyingTo === comment.id ? null : comment.id)}
+              >
+                ↳ Responder
+              </button>
+            </div>
+
+            {/* Formulario de respuesta */}
+            {replyingTo === comment.id && (
+              <div className="comment-reply-form">
+                <div className="form-group-comment">
+                  <textarea
+                    value={replyContent}
+                    onChange={(e) => setReplyContent(e.target.value)}
+                    placeholder="Escribe tu respuesta..."
+                    required
+                  ></textarea>
+                </div>
+                <button 
+                  className="submit-comment-btn"
+                  onClick={() => handleReplySubmit(comment.id)}
+                >
+                  Publicar Respuesta
+                </button>
+              </div>
+            )}
+
+            {/* Respuestas */}
+            {comment.replies.length > 0 && (
+              <ul className="comment-replies">
+                {comment.replies.map(reply => (
+                  <li key={reply.id} className="comment-item">
+                    <div className="comment-header">
+                      <div className="comment-avatar">{reply.avatar}</div>
+                      <div>
+                        <span className="comment-author">{reply.author}</span>
+                        <span className="comment-time">{formatTime(reply.timestamp)}</span>
+                      </div>
+                    </div>
+                    <div className="comment-content">
+                      {reply.content}
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </li>
+        ))}
+      </ul>
+
+      {/* Botón Ver más */}
+      {allComments.length > comments.length && (
+        <div className="show-more-container">
+          <button 
+            className="show-more-btn"
+            onClick={() => setShowAllComments(!showAllComments)}
+          >
+            {showAllComments ? 'Ver menos ↑' : 'Ver más ↓'}
+          </button>
+        </div>
+      )}
+    </div>
+  );
+};
 
 export default App;
