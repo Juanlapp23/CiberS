@@ -165,39 +165,71 @@ const HomePage = () => {
         subtitle="La ciberseguridad es fundamental en un mundo cada vez más digitalizado"
         className="importance-section"
       >
-        <div className="section-background-text">Security</div>
+        <div className="section-background-text">CYBER DEFENSE</div>
         <div className="importance-content">
           <div className="importance-text">
             <p>
             En la era digital actual, las amenazas cibernéticas no solo evolucionan, sino que se vuelven más inteligentes, sigilosas y devastadoras cada día. La protección de los datos ya no es una opción, sino una cuestión de supervivencia para individuos, empresas y gobiernos. Un solo descuido puede abrir la puerta a ataques capaces de robar identidades, parar sistemas enteros o destruir reputaciones en segundos. La seguridad digital se ha convertido en la primera línea de defensa en un mundo donde la información vale más que el oro.
-
             </p>
-            <div className="stats-grid">
-              <div className="stat-card" data-aos="zoom-in">
-                <h3>
+          </div>
+
+          {/* CONTENEDOR PREMIUM LIQUID GLASS */}
+          <div className="stats-premium-container" data-aos="fade-up">
+            
+            <div className="bento-stats-grid">
+              {/* CUADRO 1: Estadística 95% */}
+              <div className="bento-card stat-card-1" data-aos="fade-up" data-aos-delay="100">
+                <div className="stat-number">
                   <CountUp from={0} to={95} duration={2} />%
-                </h3>
-                <p>de las brechas de seguridad son causadas por error humano</p>
+                </div>
+                <p className="stat-label">de las brechas de seguridad son causadas por error humano</p>
               </div>
-              <div className="stat-card" data-aos="zoom-in" data-aos-delay="100">
-                <h3>
-                  +<CountUp from={0} to={600} duration={2} />%
-                </h3>
-                <p>aumento en ciberataques desde el inicio de la pandemia</p>
+
+              {/* CUADRO 2: Imagen 1 */}
+              <div className="bento-card image-card-1" data-aos="fade-up" data-aos-delay="150">
+                <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800&q=80" alt="Cybersecurity" className="bento-image" />
+                <div className="image-overlay"></div>
               </div>
-              <div className="stat-card" data-aos="zoom-in" data-aos-delay="200">
-                <h3>
-                  <CountUp 
-                    from={0} 
-                    to={3.5} 
-                    duration={2} 
-                    decimals={1} 
-                  />
-                  M
-                </h3>
-                <p>puestos de trabajo en ciberseguridad sin cubrir a nivel global</p>
+
+              {/* CUADRO 3: Imagen 2 */}
+              <div className="bento-card image-card-2" data-aos="fade-up" data-aos-delay="200">
+                <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&q=80" alt="Network" className="bento-image" />
+                <div className="image-overlay"></div>
+              </div>
+
+              {/* CUADRO 4: Estadística +600% */}
+              <div className="bento-card stat-card-2" data-aos="fade-up" data-aos-delay="250">
+                <div className="stat-number">+
+                  <CountUp from={0} to={600} duration={2} />%
+                </div>
+                <p className="stat-label">aumento en ciberataques desde el inicio de la pandemia</p>
+              </div>
+
+              {/* CUADRO 5: HERO - AHORA CON LA ESTADÍSTICA $10.5T */}
+              <div className="bento-card stat-card-hero" data-aos="zoom-in" data-aos-delay="300">
+                <div className="stat-number hero-stat">
+                  $<CountUp from={0} to={10.5} duration={2} decimals={1} />T
+                </div>
+                <p className="stat-label hero-label">Costo global estimado del cibercrimen para 2025</p>
+              </div>
+
+              {/* CUADRO 6: Estadística 3.5M */}
+              <div className="bento-card stat-card-3" data-aos="fade-up" data-aos-delay="350">
+                <div className="stat-number">
+                  <CountUp from={0} to={3.5} duration={2} decimals={1} />M
+                </div>
+                <p className="stat-label">puestos de trabajo en ciberseguridad sin cubrir a nivel global</p>
+              </div>
+
+              {/* CUADRO 7: AHORA CON IMAGEN Y TEXTO */}
+              <div className="bento-card text-card-hero" data-aos="fade-up" data-aos-delay="400">
+                <img src="https://images.unsplash.com/photo-1563206767-5b18f218e8de?w=1200&q=80" alt="Cyber Defense" className="bento-image" />
+                <div className="image-overlay-text">
+                  <h3>La Primera Línea de Defensa Digital</h3>
+                </div>
               </div>
             </div>
+
           </div>
         </div>
       </Section>
