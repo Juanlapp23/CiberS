@@ -502,7 +502,7 @@
   
   /* ===== SECTIONS GENERALES ===== */
   .section {
-    padding: var(--space-2xl) 0;
+    padding: 3rem 0;  /* Reduced from var(--space-2xl) which is 4rem */
     background: #000000;
     position: relative;
     overflow: hidden;
@@ -523,6 +523,20 @@
     z-index: 0;
     letter-spacing: -0.02em;
     opacity: 0.5;
+  }
+  
+  .testimonials-section .section-background-text {
+    top: -40px;
+    font-size: clamp(100px, 18vw, 250px);
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  .testimonials-section .section-background-text {
+    top: -40px;
+    font-size: clamp(100px, 18vw, 250px);
+    left: 50%;
+    transform: translateX(-50%);
   }
 
   /* Posicionamiento específico por sección */
@@ -1657,6 +1671,7 @@
   /* ===== ETHICAL DISCLAIMER ===== */
   .ethical-disclaimer-section {
     background: transparent;
+    padding: 2rem 0;  /* Reduced padding */
   }
   
   .disclaimer-card {
@@ -1691,7 +1706,7 @@
   
   .contact-section-v2 {
     background: #000000;
-    padding: 6rem 0 4rem;
+    padding: 4rem 0 2rem;  /* Reduced from 6rem 0 4rem */
     position: relative;
     overflow: hidden;
   }
@@ -1911,7 +1926,7 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1.5rem;
-    margin-bottom: 6rem;
+    margin-bottom: 3rem;
     position: relative;
     z-index: 1;
   }
@@ -2031,7 +2046,7 @@
   
   @media (max-width: 768px) {
     .contact-section-v2 {
-      padding: 4rem 0 3rem;
+      padding: 3rem 0 1.5rem;  /* Reduced padding for mobile */
     }
   
     .contact-background-text {
@@ -2536,348 +2551,6 @@
   .faq-answer p {
     color: rgba(255, 255, 255, 0.8);
     line-height: 1.6;
-  }
-  
-  /* ===== COMMENTS SECTION ===== */
-  .comments-section {
-    background: #000000;
-    padding: 4rem 0;
-    position: relative;
-    font-family: 'Courier New', Courier, monospace;
-  }
-
-  .comments-section .section-background-text {
-    color: #0a0a0a;
-    opacity: 0.3;
-    top: -30px;
-  }
-
-  .comments-container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 0 1rem;
-  }
-
-  /* Comment Form */
-  .comment-form {
-    background: rgba(10, 10, 10, 0.7);
-    border: 1px solid #00ff88;
-    border-radius: 8px;
-    padding: 2rem;
-    margin-bottom: 3rem;
-    box-shadow: 0 0 15px rgba(0, 255, 136, 0.2);
-    position: relative;
-    overflow: hidden;
-    transition: box-shadow 0.3s ease;
-  }
-
-  .comment-form:hover {
-    box-shadow: 0 0 25px rgba(0, 255, 136, 0.4);
-  }
-
-  .comment-form::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, #00ff88, transparent);
-    animation: borderPulse 2s infinite;
-  }
-
-  @keyframes borderPulse {
-    0% {
-      opacity: 0.5;
-    }
-    50% {
-      opacity: 1;
-    }
-    100% {
-      opacity: 0.5;
-    }
-  }
-
-  .comment-form-title {
-    font-size: 1.5rem;
-    color: #00ff88;
-    margin-bottom: 1.5rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    text-shadow: 0 0 5px rgba(0, 255, 136, 0.5);
-  }
-
-  .form-group-comment {
-    margin-bottom: 1.5rem;
-  }
-
-  .form-group-comment label {
-    display: block;
-    margin-bottom: 0.5rem;
-    color: rgba(255, 255, 255, 0.8);
-    font-size: 0.9rem;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-  }
-
-  .form-group-comment input,
-  .form-group-comment textarea {
-    width: 100%;
-    padding: 0.75rem 1rem;
-    background: rgba(0, 0, 0, 0.5);
-    border: 1px solid #00aa66;
-    border-radius: 4px;
-    color: #ffffff;
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 1rem;
-    transition: all 0.3s ease;
-  }
-
-  .form-group-comment input::placeholder,
-  .form-group-comment textarea::placeholder {
-    color: rgba(0, 255, 136, 0.4);
-  }
-
-  .form-group-comment input:focus,
-  .form-group-comment textarea:focus {
-    outline: none;
-    border-color: #00ff88;
-    box-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
-  }
-
-  .form-group-comment textarea {
-    min-height: 120px;
-    resize: vertical;
-  }
-
-  .submit-comment-btn {
-    background: #00ff88;
-    color: #000000;
-    border: none;
-    border-radius: 4px;
-    padding: 0.75rem 2rem;
-    font-family: 'Courier New', Courier, monospace;
-    font-weight: bold;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .submit-comment-btn:hover {
-    background: #00cc66;
-    box-shadow: 0 0 15px rgba(0, 255, 136, 0.7);
-    transform: translateY(-2px);
-  }
-
-  .submit-comment-btn:active {
-    transform: translateY(0);
-  }
-
-  .submit-comment-btn::after {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -60%;
-    width: 20px;
-    height: 200%;
-    background: rgba(255, 255, 255, 0.3);
-    transform: rotate(30deg);
-    transition: all 0.6s ease;
-  }
-
-  .submit-comment-btn:hover::after {
-    left: 120%;
-  }
-
-  /* Comments List */
-  .comments-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-
-  .comment-item {
-    background: rgba(10, 10, 10, 0.7);
-    border: 1px solid #00aa66;
-    border-radius: 8px;
-    padding: 1.5rem;
-    margin-bottom: 1.5rem;
-    position: relative;
-    overflow: hidden;
-    transition: all 0.3s ease;
-  }
-
-  .comment-item:hover {
-    border-color: #00ff88;
-    box-shadow: 0 0 15px rgba(0, 255, 136, 0.3);
-    transform: translateY(-3px);
-  }
-
-  .comment-item::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 4px;
-    height: 100%;
-    background: #00ff88;
-    box-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
-  }
-
-  .comment-header {
-    display: flex;
-    align-items: center;
-    margin-bottom: 1rem;
-  }
-
-  .comment-avatar {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, #0a0a0a, #00aa66);
-    border: 1px solid #00ff88;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #00ff88;
-    font-weight: bold;
-    font-size: 0.9rem;
-    margin-right: 1rem;
-    flex-shrink: 0;
-    box-shadow: 0 0 8px rgba(0, 255, 136, 0.3);
-  }
-
-  .comment-author {
-    color: #00ff88;
-    font-weight: bold;
-    margin-right: 0.5rem;
-    font-size: 1rem;
-  }
-
-  .comment-time {
-    color: rgba(0, 255, 136, 0.6);
-    font-size: 0.8rem;
-  }
-
-  .comment-content {
-    color: rgba(255, 255, 255, 0.9);
-    line-height: 1.6;
-    font-size: 1rem;
-    margin-bottom: 1rem;
-    font-family: 'Courier New', Courier, monospace;
-  }
-
-  .comment-actions {
-    display: flex;
-    gap: 1rem;
-  }
-
-  .comment-action {
-    background: none;
-    border: none;
-    color: rgba(0, 255, 136, 0.7);
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 0.9rem;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    display: flex;
-    align-items: center;
-    gap: 0.3rem;
-  }
-
-  .comment-action:hover {
-    color: #00ff88;
-    text-shadow: 0 0 5px rgba(0, 255, 136, 0.5);
-  }
-
-  .comment-reply-form {
-    margin-top: 1.5rem;
-    padding-top: 1.5rem;
-    border-top: 1px dashed rgba(0, 255, 136, 0.3);
-  }
-
-  .comment-replies {
-    margin-top: 1.5rem;
-    padding-left: 2rem;
-    border-left: 1px dashed rgba(0, 255, 136, 0.2);
-  }
-
-  .comment-count {
-    color: #00ff88;
-    font-weight: bold;
-    text-align: center;
-    margin-bottom: 2rem;
-    font-size: 1.2rem;
-    text-shadow: 0 0 5px rgba(0, 255, 136, 0.5);
-  }
-
-  /* Nested comments */
-  .comment-item .comment-item {
-    background: rgba(5, 5, 5, 0.5);
-    margin-bottom: 1rem;
-  }
-
-  .comment-item .comment-item:hover {
-    transform: translateY(-2px);
-  }
-
-  .comment-item .comment-item::before {
-    width: 2px;
-    background: #00aa66;
-  }
-
-  /* Show More Button */
-  .show-more-container {
-    text-align: center;
-    margin-top: 2rem;
-  }
-
-  .show-more-btn {
-    background: rgba(0, 255, 136, 0.1);
-    color: #00ff88;
-    border: 1px solid #00ff88;
-    border-radius: 4px;
-    padding: 0.75rem 2rem;
-    font-family: 'Courier New', Courier, monospace;
-    font-weight: bold;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-  }
-
-  .show-more-btn:hover {
-    background: rgba(0, 255, 136, 0.2);
-    box-shadow: 0 0 15px rgba(0, 255, 136, 0.4);
-    transform: translateY(-2px);
-  }
-
-  /* Responsive */
-  @media (max-width: 768px) {
-    .comments-section {
-      padding: 3rem 0;
-    }
-    
-    .comment-form {
-      padding: 1.5rem;
-    }
-    
-    .comment-item {
-      padding: 1rem;
-    }
-    
-    .comment-replies {
-      padding-left: 1rem;
-    }
-    
-    .comment-form-title {
-      font-size: 1.2rem;
-    }
   }
 
   /* ===== FOOTER PREMIUM ===== */
@@ -3683,5 +3356,134 @@
       black 80%,
       transparent 100%
     );
+  }
+  
+  /* Testimonials Carousel */
+  .testimonials-carousel-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+  
+  .testimonials-title {
+    color: white;
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: var(--font-size-3xl);
+    font-weight: 700;
+    font-family: 'Space Mono', monospace;
+  }
+  
+  .testimonials-container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+  
+  .slider-container {
+    width: 100%;
+  }
+  
+  .testimonial-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    text-align: center;
+    color: #fff;
+    height: 250px;
+    margin: 0 10px;
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .testimonial-card:hover {
+    transform: scale(1.05);
+    background: rgba(255, 255, 255, 0.08);
+  }
+  
+  .avatar-container {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 15px;
+  }
+  
+  .avatar {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: linear-gradient(90deg, #61410a, #cc9b7a);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: #fff;
+  }
+  
+  .separator {
+    width: 80%;
+    height: 2px;
+    background: linear-gradient(to right, transparent, #cc9b7a, transparent);
+    margin: 10px auto;
+  }
+  
+  .content {
+    font-size: var(--font-size-sm);
+    line-height: 1.6;
+    margin-bottom: 10px;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .author-date {
+    font-size: var(--font-size-xs);
+    color: #cc9b7a;
+    font-weight: bold;
+  }
+  
+  /* Slick Carousel Custom Styles */
+  .slick-dots li button:before {
+    color: white;
+    opacity: 0.5;
+  }
+  
+  .slick-dots li.slick-active button:before {
+    color: var(--primary-color);
+    opacity: 1;
+  }
+  
+  .slick-prev:before, .slick-next:before {
+    color: var(--primary-color);
+  }
+  
+  .slick-prev, .slick-next {
+    z-index: 1;
+  }
+  
+  .slick-prev {
+    left: -25px;
+  }
+  
+  .slick-next {
+    right: -25px;
+  }
+  
+  /* Responsive styles for dual carousel */
+  @media (min-width: 1024px) {
+    .testimonials-container {
+      flex-direction: row;
+    }
+    
+    .slider-container {
+      width: 50%;
+    }
   }
 }

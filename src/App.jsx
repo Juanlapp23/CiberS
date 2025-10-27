@@ -10,9 +10,9 @@ import CountUp from './components/CountUp'; // Importamos el componente del cont
 import ModuleCard from './components/ModuleCard';
 import { motion } from 'framer-motion';
 import { modulesData } from './data/modules';
-import { testimonialsData } from './data/testimonials';
 import { faqData } from './data/faq';
 import GradualBlur from './components/ui/GradualBlur';
+import TestimonialsCarousel from './components/TestimonialsCarousel';
 
 // Componente para las burbujas líquidas
 const LiquidBubble = ({ color, delay, size = 60, position }) => (
@@ -152,7 +152,7 @@ const HomePage = () => {
         </div>
       </Section>
 
-      {/* Clases de CiberS */}+
+      {/* Clases de CiberS */}
 
 
     
@@ -565,15 +565,13 @@ function App() {
             </div>
           } />
         </Routes>
-        {/* ===== COMMENTS SECTION ===== */}
+        {/* ===== TESTIMONIALS CAROUSEL SECTION ===== */}
         <Section
           id="comentarios"
-          title="Comentarios de la Comunidad"
-          subtitle="Únete a la conversación de Ciber Guardians"
-          className="comments-section"
+          className="testimonials-section"
         >
-          <div className="section-background-text">Comments</div>
-          <CommentsSection />
+          <div className="section-background-text">Testimonials</div>
+          <TestimonialsCarousel />
         </Section>
 
         {/* ===== NEWSLETTER SECTION OVERLAY ===== */}
@@ -657,6 +655,18 @@ function App() {
                   </ul>
                 </div>
 
+                {/* Column 3 - Creadores */}
+                <div className="footer-column">
+                  <h4 className="footer-column-title">Creadores</h4>
+                  <ul className="footer-links">
+                    <li>Juan Carlos Madera</li>
+                    <li>Darwin Esneider Vargas</li>
+                  </ul>
+                  <div className="creators-description">
+                    De la mano de [contenido a agregar por el usuario]
+                  </div>
+                </div>
+
                 {/* Column 4 - Legal & Contacto */}
                 <div className="footer-column">
                   <h4 className="footer-column-title">Legal & Contacto</h4>
@@ -718,245 +728,5 @@ function App() {
     </BrowserRouter>
   );
 }
-
-// Componente de sección de comentarios
-const CommentsSection = () => {
-  const [comments, setComments] = useState([
-    {
-      id: 1,
-      author: "CyberNinja",
-      content: "Este curso me ha ayudado a entender conceptos complejos de ciberseguridad de una manera muy clara. ¡Recomendado 100%!",
-      timestamp: "2025-10-20T10:30:00Z",
-      avatar: "CN",
-      replies: [
-        {
-          id: 101,
-          author: "HackMaster",
-          content: "Totalmente de acuerdo. Los módulos sobre criptografía son excelentes.",
-          timestamp: "2025-10-20T14:15:00Z",
-          avatar: "HM"
-        }
-      ]
-    },
-    {
-      id: 2,
-      author: "SecurityGuru",
-      content: "La sección de hacking ético es increíble. Me ha permitido identificar vulnerabilidades en mis propios proyectos.",
-      timestamp: "2025-10-18T16:45:00Z",
-      avatar: "SG",
-      replies: []
-    }
-  ]);
-
-  const [newComment, setNewComment] = useState({
-    author: "",
-    content: ""
-  });
-
-  const [replyingTo, setReplyingTo] = useState(null);
-  const [replyContent, setReplyContent] = useState("");
-  const [showAllComments, setShowAllComments] = useState(false);
-
-  // Add some dummy comments for demonstration
-  const additionalComments = [
-    {
-      id: 3,
-      author: "JUJUAn",
-      content: "gergergeg",
-      timestamp: "2025-10-24T17:25:00Z",
-      avatar: "JU",
-      replies: [
-        {
-          id: 301,
-          author: "Usuario",
-          content: "Tambien digo lo mismo",
-          timestamp: "2025-10-24T17:26:00Z",
-          avatar: "U"
-        }
-      ]
-    }
-  ];
-
-  // Combine initial comments with additional comments
-  const allComments = [...comments, ...additionalComments];
-  const displayedComments = showAllComments ? allComments : comments;
-
-  const handleCommentChange = (e) => {
-    const { name, value } = e.target;
-    setNewComment(prev => ({
-      ...prev,
-      [name]: value
-    }));
-  };
-
-  const handleCommentSubmit = (e) => {
-    e.preventDefault();
-    if (newComment.author.trim() && newComment.content.trim()) {
-      const comment = {
-        id: Date.now(),
-        author: newComment.author,
-        content: newComment.content,
-        timestamp: new Date().toISOString(),
-        avatar: newComment.author.substring(0, 2).toUpperCase(),
-        replies: []
-      };
-      setComments(prev => [comment, ...prev]);
-      setNewComment({ author: "", content: "" });
-    }
-  };
-
-  const handleReplySubmit = (commentId) => {
-    if (replyContent.trim()) {
-      const reply = {
-        id: Date.now(),
-        author: "Usuario", // In a real app, this would be the logged-in user
-        content: replyContent,
-        timestamp: new Date().toISOString(),
-        avatar: "U"
-      };
-
-      setComments(prev => prev.map(comment => {
-        if (comment.id === commentId) {
-          return {
-            ...comment,
-            replies: [...comment.replies, reply]
-          };
-        }
-        return comment;
-      }));
-
-      setReplyContent("");
-      setReplyingTo(null);
-    }
-  };
-
-  const formatTime = (timestamp) => {
-    const date = new Date(timestamp);
-    return date.toLocaleDateString('es-ES', {
-      year: 'numeric',
-      month: 'short',
-      day: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit'
-    });
-  };
-
-  return (
-    <div className="comments-container">
-      <div className="comment-count">
-        {allComments.length} {allComments.length === 1 ? 'comentario' : 'comentarios'}
-      </div>
-
-      {/* Formulario para nuevo comentario */}
-      <form className="comment-form" onSubmit={handleCommentSubmit}>
-        <h3 className="comment-form-title">Deja tu comentario</h3>
-        <div className="form-group-comment">
-          <label htmlFor="author">Nombre</label>
-          <input
-            type="text"
-            id="author"
-            name="author"
-            value={newComment.author}
-            onChange={handleCommentChange}
-            placeholder="Tu nombre de hacker"
-            required
-          />
-        </div>
-        <div className="form-group-comment">
-          <label htmlFor="content">Comentario</label>
-          <textarea
-            id="content"
-            name="content"
-            value={newComment.content}
-            onChange={handleCommentChange}
-            placeholder="Comparte tu experiencia con Ciber Guardians..."
-            required
-          ></textarea>
-        </div>
-        <button type="submit" className="submit-comment-btn">
-          Publicar Comentario
-        </button>
-      </form>
-
-      {/* Lista de comentarios */}
-      <ul className="comments-list">
-        {displayedComments.map(comment => (
-          <li key={comment.id} className="comment-item">
-            <div className="comment-header">
-              <div className="comment-avatar">{comment.avatar}</div>
-              <div>
-                <span className="comment-author">{comment.author}</span>
-                <span className="comment-time">{formatTime(comment.timestamp)}</span>
-              </div>
-            </div>
-            <div className="comment-content">
-              {comment.content}
-            </div>
-            <div className="comment-actions">
-              <button 
-                className="comment-action"
-                onClick={() => setReplyingTo(replyingTo === comment.id ? null : comment.id)}
-              >
-                ↳ Responder
-              </button>
-            </div>
-
-            {/* Formulario de respuesta */}
-            {replyingTo === comment.id && (
-              <div className="comment-reply-form">
-                <div className="form-group-comment">
-                  <textarea
-                    value={replyContent}
-                    onChange={(e) => setReplyContent(e.target.value)}
-                    placeholder="Escribe tu respuesta..."
-                    required
-                  ></textarea>
-                </div>
-                <button 
-                  className="submit-comment-btn"
-                  onClick={() => handleReplySubmit(comment.id)}
-                >
-                  Publicar Respuesta
-                </button>
-              </div>
-            )}
-
-            {/* Respuestas */}
-            {comment.replies.length > 0 && (
-              <ul className="comment-replies">
-                {comment.replies.map(reply => (
-                  <li key={reply.id} className="comment-item">
-                    <div className="comment-header">
-                      <div className="comment-avatar">{reply.avatar}</div>
-                      <div>
-                        <span className="comment-author">{reply.author}</span>
-                        <span className="comment-time">{formatTime(reply.timestamp)}</span>
-                      </div>
-                    </div>
-                    <div className="comment-content">
-                      {reply.content}
-                    </div>
-                  </li>
-                ))}
-              </ul>
-            )}
-          </li>
-        ))}
-      </ul>
-
-      {/* Botón Ver más */}
-      {allComments.length > comments.length && (
-        <div className="show-more-container">
-          <button 
-            className="show-more-btn"
-            onClick={() => setShowAllComments(!showAllComments)}
-          >
-            {showAllComments ? 'Ver menos ↑' : 'Ver más ↓'}
-          </button>
-        </div>
-      )}
-    </div>
-  );
-};
 
 export default App;
