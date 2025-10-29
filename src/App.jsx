@@ -7,9 +7,7 @@ import Header from './components/Header';
 import Hero from './components/Hero';
 import Section from './components/Section';
 import CountUp from './components/CountUp'; // Importamos el componente del contador
-import ModuleCard from './components/ModuleCard';
 import { motion } from 'framer-motion';
-import { modulesData } from './data/modules';
 import { faqData } from './data/faq';
 import GradualBlur from './components/ui/GradualBlur';
 import TestimonialsCarousel from './components/TestimonialsCarousel';
@@ -37,26 +35,6 @@ const LiquidBubble = ({ color, delay, size = 60, position }) => (
     }}
   />
 );
-
-// Componente para manejar la vista de módulos individuales
-const ModulePage = () => {
-  const { id } = useParams();
-  const module = modulesData.find(mod => mod.id === id);
-
-  if (!module) {
-    return <div className="error-page">Módulo no encontrado</div>;
-  }
-
-  return (
-    <Section id={module.id} title={module.title} className="module-section">
-      <div className="section-background-text">Module</div>
-      <div className="module-content">
-        <h3>Contenido del Módulo</h3>
-        <p>{module.description}</p>
-      </div>
-    </Section>
-  );
-};
 
 // Componente principal de la página de inicio
 const HomePage = () => {

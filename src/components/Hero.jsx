@@ -37,10 +37,16 @@ const Hero = () => {
             primeros pasos en seguridad digital y aumentar su sueldo con una profesión de alta demanda.
           </p>
           <div className="hero-actions">
-          <a href="./public/html/Todolosmodulos.html" className="cta-button primary">
-  Ver módulos disponibles
-</a>
-
+            <Magnet 
+              padding={30} 
+              magnetStrength={3}
+              wrapperClassName="magnet-wrapper"
+              innerClassName="magnet-inner"
+            >
+              <a href="/html/Todolosmodulos.html" className="cta-button primary">
+                Ver módulos disponibles
+              </a>
+            </Magnet>
             
             <Magnet 
               padding={30} 
