@@ -27,6 +27,6 @@ export const faqData = [
     {
       id: 6,
       question: "¿Cómo saber que no es una estafa?",
-      answer: "Entendemos tus preocupaciones y te aseguramos que Ciber Guardians es una institución legítima y confiable. Tenemos numerosos testimonios de nuestros alumnos que puedes consultar."
+      answer: "Entendemos tus preocupaciones y te aseguramos que Ciber Guardians es una institución legítima y confiable. Contamos con más de 12,000 alumnos en toda América Latina que ya forman parte de nuestra comunidad."
     }
   ];

@@ -10,7 +10,6 @@ import CountUp from './components/CountUp'; // Importamos el componente del cont
 import { motion } from 'framer-motion';
 import { faqData } from './data/faq';
 import GradualBlur from './components/ui/GradualBlur';
-import TestimonialsCarousel from './components/TestimonialsCarousel';
 
 // Componente para las burbujas líquidas
 const LiquidBubble = ({ color, delay, size = 60, position }) => (
@@ -294,34 +293,34 @@ const HomePage = () => {
   </div>
 </Section>
 
-      {/* Empresas que confían */}
+      {/* Consejos de Seguridad */}
       <section className="brands-section">
         <div className="brands-container">
-          <h3 className="brands-title">Recomendado por líderes de la industria</h3>
+          <h3 className="brands-title">Cosas que aprenderás en tu vida personal y corporativa</h3>
           <div className="brands-scroll">
             <div className="brands-track">
-              {/* Primera serie de logos */}
-              <img src="https://logo.clearbit.com/microsoft.com" alt="Microsoft" />
-              <img src="https://logo.clearbit.com/google.com" alt="Google" />
-              <img src="https://logo.clearbit.com/amazon.com" alt="AWS" />
-              <img src="https://logo.clearbit.com/cisco.com" alt="Cisco" />
-              <img src="https://logo.clearbit.com/ibm.com" alt="IBM" />
-              <img src="https://logo.clearbit.com/oracle.com" alt="Oracle" />
-              <img src="https://logo.clearbit.com/dell.com" alt="Dell Technologies" />
-              <img src="https://logo.clearbit.com/hp.com" alt="HP" />
-              <img src="https://logo.clearbit.com/intel.com" alt="Intel" />
-              <img src="https://logo.clearbit.com/adobe.com" alt="Adobe" />
-              {/* Segunda serie de logos (duplicados para efecto infinito) */}
-              <img src="https://logo.clearbit.com/microsoft.com" alt="Microsoft" />
-              <img src="https://logo.clearbit.com/google.com" alt="Google" />
-              <img src="https://logo.clearbit.com/amazon.com" alt="AWS" />
-              <img src="https://logo.clearbit.com/cisco.com" alt="Cisco" />
-              <img src="https://logo.clearbit.com/ibm.com" alt="IBM" />
-              <img src="https://logo.clearbit.com/oracle.com" alt="Oracle" />
-              <img src="https://logo.clearbit.com/dell.com" alt="Dell Technologies" />
-              <img src="https://logo.clearbit.com/hp.com" alt="HP" />
-              <img src="https://logo.clearbit.com/intel.com" alt="Intel" />
-              <img src="https://logo.clearbit.com/adobe.com" alt="Adobe" />
+              {/* Primera serie de consejos */}
+              <div className="advice-card">💡 Protege tus contraseñas con autenticación de dos factores</div>
+              <div className="advice-card">🔒 Nunca compartas información sensible por email sin cifrar</div>
+              <div className="advice-card">🛡️ Mantén tus dispositivos actualizados regularmente</div>
+              <div className="advice-card">📱 Usa VPN en redes WiFi públicas</div>
+              <div className="advice-card">🎯 Verifica siempre la autenticidad de los remitentes</div>
+              <div className="advice-card">⚠️ Desconfía de ofertas demasiado buenas para ser verdad</div>
+              <div className="advice-card">🔐 Implementa políticas de seguridad en tu empresa</div>
+              <div className="advice-card">📊 Realiza backups periódicos de tu información</div>
+              <div className="advice-card">👥 Capacita a tu equipo en ciberseguridad</div>
+              <div className="advice-card">🚨 Reporta cualquier actividad sospechosa inmediatamente</div>
+              {/* Segunda serie de consejos (duplicados para efecto infinito) */}
+              <div className="advice-card">💡 Protege tus contraseñas con autenticación de dos factores</div>
+              <div className="advice-card">🔒 Nunca compartas información sensible por email sin cifrar</div>
+              <div className="advice-card">🛡️ Mantén tus dispositivos actualizados regularmente</div>
+              <div className="advice-card">📱 Usa VPN en redes WiFi públicas</div>
+              <div className="advice-card">🎯 Verifica siempre la autenticidad de los remitentes</div>
+              <div className="advice-card">⚠️ Desconfía de ofertas demasiado buenas para ser verdad</div>
+              <div className="advice-card">🔐 Implementa políticas de seguridad en tu empresa</div>
+              <div className="advice-card">📊 Realiza backups periódicos de tu información</div>
+              <div className="advice-card">👥 Capacita a tu equipo en ciberseguridad</div>
+              <div className="advice-card">🚨 Reporta cualquier actividad sospechosa inmediatamente</div>
             </div>
           </div>
         </div>
@@ -473,7 +472,6 @@ const HomePage = () => {
                 <h4>Email us</h4>
                 <p>ciberguardian@gmail.com</p>
               </div>
-              <span className="card-arrow">→</span>
             </div>
 
             <div className="contact-info-card">
@@ -486,7 +484,6 @@ const HomePage = () => {
                 <h4>Call us</h4>
                 <p>+57 3011471160</p>
               </div>
-              <span className="card-arrow">→</span>
             </div>
 
             <div className="contact-info-card">
@@ -500,7 +497,6 @@ const HomePage = () => {
                 <h4>Our location</h4>
                 <p>Bogotá, Colombia</p>
               </div>
-              <span className="card-arrow">→</span>
             </div>
           </div>
 
@@ -543,21 +539,12 @@ function App() {
             </div>
           } />
         </Routes>
-        {/* ===== TESTIMONIALS CAROUSEL SECTION ===== */}
-        <Section
-          id="comentarios"
-          className="testimonials-section"
-        >
-          <div className="section-background-text">Testimonials</div>
-          <TestimonialsCarousel />
-        </Section>
-
         {/* ===== NEWSLETTER SECTION OVERLAY ===== */}
         <div className="newsletter-section-overlay">
           <div className="container">
             <div className="newsletter-card-glass">
               <div className="newsletter-content">
-                <h3 className="newsletter-title">Never Miss an Update</h3>
+                <h3 className="newsletter-title">No te pierdas ninguna actualización</h3>
                 <p className="newsletter-subtitle">Únete a miles de profesionales en ciberseguridad</p>
     
                 <div className="newsletter-form">
@@ -638,11 +625,7 @@ function App() {
                   <h4 className="footer-column-title">Creadores</h4>
                   <ul className="footer-links">
                     <li>Juan Carlos Madera</li>
-                    <li>Darwin Esneider Vargas</li>
                   </ul>
-                  <div className="creators-description">
-                    De la mano de [contenido a agregar por el usuario]
-                  </div>
                 </div>
 
                 {/* Column 4 - Legal & Contacto */}

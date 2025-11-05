@@ -28,7 +28,6 @@ const Header = () => {
     { id: 'mision-vision-valores', label: 'Misión' },
     { id: 'importancia', label: 'Importancia' },
     { id: 'ventajas', label: 'Ventajas' },
-    { id: 'testimonios', label: 'Testimonios' },
     { id: 'faq', label: 'FAQ' },
     { id: 'contacto', label: 'Contacto' }
   ];
