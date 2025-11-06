@@ -25,7 +25,22 @@
         <div class="container hero-container">
             <div class="hero-content">
                 <h1 class="hero-title">
-                    Domina la <span class="gradient-text">Ciberseguridad</span><br>con Nuestros Módulos
+                    <span
+                        id="trueFocusTitle"
+                        class="true-focus"
+                        data-blur="5"
+                        data-border-color="#00FF80"
+                        data-glow-color="rgba(0, 255, 128, 0.55)"
+                        data-animation-duration="0.6"
+                        data-pause="1.2"
+                    >
+                        <span data-focus-word class="true-focus__word">Domina</span>
+                        <span data-focus-word class="true-focus__word">la</span>
+                        <span data-focus-word class="true-focus__word gradient-text">Ciberseguridad</span><br>
+                        <span data-focus-word class="true-focus__word">con</span>
+                        <span data-focus-word class="true-focus__word">Nuestros</span>
+                        <span data-focus-word class="true-focus__word">Módulos</span>
+                    </span>
                 </h1>
                 <p class="hero-subtitle">22 cursos especializados, desde básicos hasta avanzados, para convertirte en un experto en seguridad digital y proteger el mundo online.</p>
                 
@@ -69,99 +84,48 @@
         </div>
     </section>
 
+    <div id="moduleModal" class="module-modal" aria-hidden="true">
+        <div class="modal-backdrop" data-modal-close></div>
+        <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="moduleModalTitle" tabindex="-1">
+            <button class="modal-close" type="button" aria-label="Cerrar" data-modal-close>
+                <span>&times;</span>
+            </button>
+            <header class="modal-header">
+                <div class="modal-tag">Curso</div>
+                <h2 id="moduleModalTitle" class="modal-title"></h2>
+                <p class="modal-subtitle"></p>
+            </header>
+            <div class="modal-body">
+                <section class="modal-section modal-index">
+                    <h3>Índice</h3>
+                    <div class="modal-subsection">
+                        <h4>Lo que aprenderás</h4>
+                        <ul class="modal-list" id="modalLearningList"></ul>
+                    </div>
+                    <div class="modal-subsection">
+                        <h4>Beneficios</h4>
+                        <ul class="modal-list" id="modalBenefitsList"></ul>
+                    </div>
+                    <div class="modal-subsection">
+                        <h4>Requisitos</h4>
+                        <ul class="modal-list" id="modalRequirementsList"></ul>
+                    </div>
+                </section>
+                <section class="modal-section modal-classes">
+                    <h3>Clases del módulo</h3>
+                    <div class="classes-grid" id="modalClassesGrid"></div>
+                </section>
+            </div>
+        </div>
+    </div>
+
     <footer class="footer">
         <p>&copy; 2025 Ciber Guardians. Todos los derechos reservados.</p>
     </footer>
 
-    <script>
-        const modules = [
-            { id: 1, num: "01", title: "Conocer el Sistema Operativo", category: "Sistemas", level: "Básico", color: "#8B5CF6", gradient: "from-purple-500 to-pink-500" },
-            { id: 2, num: "02", title: "Seguridad en macOS", category: "Sistemas", level: "Intermedio", color: "#EC4899", gradient: "from-pink-500 to-rose-500" },
-            { id: 3, num: "03", title: "Recopilación Ética", category: "OSINT", level: "Básico", color: "#06B6D4", gradient: "from-cyan-500 to-blue-500" },
-            { id: 4, num: "04", title: "IA en Ciberseguridad", category: "Tecnología", level: "Avanzado", color: "#10B981", gradient: "from-green-500 to-emerald-500" },
-            { id: 5, num: "05", title: "Prompts de Seguridad", category: "IA", level: "Intermedio", color: "#F59E0B", gradient: "from-amber-500 to-orange-500" },
-            { id: 6, num: "06", title: "Esteganografía", category: "Criptografía", level: "Intermedio", color: "#6366F1", gradient: "from-indigo-500 to-purple-500" },
-            { id: 7, num: "07", title: "Navegación Anónima", category: "Privacidad", level: "Básico", color: "#8B5CF6", gradient: "from-violet-500 to-purple-500" },
-            { id: 8, num: "08", title: "Redes Sociales", category: "Privacidad", level: "Básico", color: "#3B82F6", gradient: "from-blue-500 to-cyan-500" },
-            { id: 9, num: "09", title: "Fraude con Tarjetas", category: "Finanzas", level: "Intermedio", color: "#EF4444", gradient: "from-red-500 to-pink-500" },
-            { id: 10, num: "10", title: "Keyloggers", category: "Malware", level: "Intermedio", color: "#DC2626", gradient: "from-red-600 to-orange-600" },
-            { id: 11, num: "11", title: "WiFi WEP", category: "Redes", level: "Básico", color: "#14B8A6", gradient: "from-teal-500 to-cyan-500" },
-            { id: 12, num: "12", title: "WiFi WPA/WPA2", category: "Redes", level: "Intermedio", color: "#06B6D4", gradient: "from-cyan-500 to-sky-500" },
-            { id: 13, num: "13", title: "Monitoreo de Red", category: "Redes", level: "Avanzado", color: "#0EA5E9", gradient: "from-sky-500 to-blue-500" },
-            { id: 14, num: "14", title: "Bases de Datos", category: "Desarrollo", level: "Intermedio", color: "#8B5CF6", gradient: "from-purple-500 to-violet-500" },
-            { id: 15, num: "15", title: "Seguridad Android", category: "Mobile", level: "Básico", color: "#22C55E", gradient: "from-green-500 to-lime-500" },
-            { id: 16, num: "16", title: "Ataques DoS/DDoS", category: "Redes", level: "Avanzado", color: "#F97316", gradient: "from-orange-500 to-red-500" },
-            { id: 17, num: "17", title: "Cross Site Scripting", category: "Web", level: "Intermedio", color: "#EAB308", gradient: "from-yellow-500 to-amber-500" },
-            { id: 18, num: "18", title: "Protección de Datos", category: "Seguridad", level: "Avanzado", color: "#A855F7", gradient: "from-purple-600 to-fuchsia-600" },
-            { id: 19, num: "19", title: "Gestión de Contraseñas", category: "Seguridad", level: "Básico", color: "#EC4899", gradient: "from-pink-500 to-purple-500" },
-            { id: 20, num: "20", title: "Seguridad WordPress", category: "Web", level: "Intermedio", color: "#14B8A6", gradient: "from-teal-500 to-green-500" },
-            { id: 21, num: "21", title: "Escaneo de Vulnerabilidades", category: "Pentesting", level: "Avanzado", color: "#F43F5E", gradient: "from-rose-500 to-red-500" },
-            { id: 22, num: "22", title: "Preparación Entrevistas", category: "Carrera", level: "Todos", color: "#06B6D4", gradient: "from-cyan-400 to-blue-600" }
-        ];
+    <script type="module" src="/js/true-focus.js"></script>
+    <script type="module" src="/js/modules-data.js"></script>
+    <script type="module" src="/js/modules-ui.js"></script>
 
-        const gradientMap = {
-            "from-purple-500 to-pink-500": "linear-gradient(135deg, #8b5cf6, #ec4899)",
-            "from-pink-500 to-rose-500": "linear-gradient(135deg, #ec4899, #f43f5e)",
-            "from-cyan-500 to-blue-500": "linear-gradient(135deg, #06b6d4, #3b82f6)",
-            "from-green-500 to-emerald-500": "linear-gradient(135deg, #10b981, #047857)",
-            "from-amber-500 to-orange-500": "linear-gradient(135deg, #f59e0b, #f97316)",
-            "from-indigo-500 to-purple-500": "linear-gradient(135deg, #6366f1, #8b5cf6)",
-            "from-violet-500 to-purple-500": "linear-gradient(135deg, #8b5cf6, #8b5cf6)",
-            "from-blue-500 to-cyan-500": "linear-gradient(135deg, #3b82f6, #06b6d4)",
-            "from-red-500 to-pink-500": "linear-gradient(135deg, #ef4444, #ec4899)",
-            "from-red-600 to-orange-600": "linear-gradient(135deg, #dc2626, #ea580c)",
-            "from-teal-500 to-cyan-500": "linear-gradient(135deg, #14b8a6, #06b6d4)",
-            "from-cyan-500 to-sky-500": "linear-gradient(135deg, #06b6d4, #0ea5e9)",
-            "from-sky-500 to-blue-500": "linear-gradient(135deg, #0ea5e9, #3b82f6)",
-            "from-purple-500 to-violet-500": "linear-gradient(135deg, #8b5cf6, #818cf8)",
-            "from-green-500 to-lime-500": "linear-gradient(135deg, #22c55e, #84cc16)",
-            "from-orange-500 to-red-500": "linear-gradient(135deg, #f97316, #ef4444)",
-            "from-yellow-500 to-amber-500": "linear-gradient(135deg, #eab308, #f59e0b)",
-            "from-purple-600 to-fuchsia-600": "linear-gradient(135deg, #a855f7, #d946ef)",
-            "from-pink-500 to-purple-500": "linear-gradient(135deg, #ec4899, #8b5cf6)",
-            "from-teal-500 to-green-500": "linear-gradient(135deg, #14b8a6, #22c55e)",
-            "from-rose-500 to-red-500": "linear-gradient(135deg, #f43f5e, #ef4444)",
-            "from-cyan-400 to-blue-600": "linear-gradient(135deg, #22d3ee, #1d4ed8)"
-        };
-
-        function createCard(module, index) {
-            const card = document.createElement('div');
-            card.className = 'card';
-            card.style.animationDelay = `${index * 0.05}s`;
-            
-            card.innerHTML = `
-                <div class="card-border" style="background: ${module.color};">
-                    <div class="card-inner"></div>
-                </div>
-                <div class="card-gradient">
-                    <div class="spinning-circle" style="background: ${gradientMap[module.gradient]};"></div>
-                </div>
-                <div class="card-content">
-                    <div class="card-info">
-                        <span class="module-num">${module.num}</span>
-                        <span class="module-title">${module.title}</span>
-                        <span class="module-status">Gratis</span>
-                        <div class="module-year">2025</div>
-                    </div>
-                    <div class="card-actions">
-                        <span class="module-category">${module.category}</span>
-                        <span class="module-level">${module.level}</span>
-                        <button class="card-btn" aria-label="Ver ${module.title}">
-                            <svg viewBox="0 0 12 12" class="arrow-icon">
-                                <path d="M4.646 2.146a.5.5 0 0 0 0 .708L7.793 6L4.646 9.146a.5.5 0 1 0 .708.708l3.5-3.5a.5.5 0 0 0 0-.708l-3.5-3.5a.5.5 0 0 0-.708 0z" fill="currentColor"/>
-                            </svg>
-                        </button>
-                    </div>
-                </div>
-            `;
-            
-            return card;
-        }
-
-        const grid = document.getElementById('modulesGrid');
-        modules.forEach((module, index) => {
-            grid.appendChild(createCard(module, index));
-        });
-    </script>
 </body>
 </html>
